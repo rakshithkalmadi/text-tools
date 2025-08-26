@@ -14,32 +14,10 @@ A powerful React component for text conversion tools including Markdown to HTML,
 
 ## 🚀 Quick Start - Running Independently
 
-### ⚡ Super Quick Setup (Recommended)
+### ⚡ Super Quick Setup
 
-**Use our automated setup scripts for the fastest setup:**
+**The fastest way to get started:**
 
-```bash
-# Clone the text-tools repository
-git clone https://github.com/rakshithkalmadi/text-tools.git
-cd text-tools
-
-# Run automated setup script
-# For Linux/Mac:
-bash setup-demo.sh
-
-# For Windows:
-setup-demo.bat
-
-# That's it! Now run:
-cd demo
-npm run dev
-```
-
-Open `http://localhost:3000` and you're ready to develop! 🎉
-
-### Manual Setup Options
-
-### Option 1: Clone and Run Directly
 ```bash
 # Clone the text-tools repository
 git clone https://github.com/rakshithkalmadi/text-tools.git
@@ -48,17 +26,17 @@ cd text-tools
 # Install dependencies
 npm install
 
-# Create a simple Next.js wrapper to run the component
+# Create a Next.js demo project
 npx create-next-app@latest demo --typescript --tailwind --eslint --app --use-npm --no-git
 cd demo
 
 # Install the text-tools package locally
 npm install ../
 
-# Replace the default page with text tools
+# Replace the default page
 ```
 
-Create `demo/app/page.tsx`:
+Replace `demo/app/page.tsx` with:
 ```tsx
 import { TextToolsPage } from 'text-conversion-tools';
 
@@ -72,17 +50,56 @@ export default function Home() {
 npm run dev
 ```
 
-### Option 2: Use in Your Existing Project
+Open `http://localhost:3000` and you're ready to develop! 🎉
+
+### Alternative Setup Options
+
+### Option 1: Use in Your Existing Project
 
 ```bash
 # If you want to use it in your existing Next.js/React project
-npm install text-conversion-tools
-
-# Or install from GitHub directly
 npm install git+https://github.com/rakshithkalmadi/text-tools.git
+
+# Or clone and install locally
+git clone https://github.com/rakshithkalmadi/text-tools.git
+npm install ./text-tools
 ```
 
-### Option 3: Quick Standalone Demo
+### Option 2: Clone and Create Demo
+
+```bash
+# Clone the text-tools repository
+git clone https://github.com/rakshithkalmadi/text-tools.git
+cd text-tools
+
+# Install dependencies
+npm install
+
+# Create a simple Next.js wrapper to run the component
+npx create-next-app@latest my-demo --typescript --tailwind --eslint --app --use-npm --no-git
+cd my-demo
+
+# Install the text-tools package locally
+npm install ../
+
+# Replace the default page with text tools
+```
+
+Replace `my-demo/app/page.tsx` with:
+```tsx
+import { TextToolsPage } from 'text-conversion-tools';
+
+export default function Home() {
+  return <TextToolsPage />;
+}
+```
+
+```bash
+# Run the demo
+npm run dev
+```
+
+### Option 3: Manual Next.js Setup
 
 Create a new project structure:
 ```bash
@@ -166,16 +183,11 @@ npm run dev
 npm install text-conversion-tools
 ```
 
-## 🛠️ Available Scripts
+## � Installation for Production Use
 
-This repository includes helpful scripts to get you started quickly:
-
-- `npm run setup-demo` - Runs the automated setup script (Linux/Mac)
-- `npm run setup-demo-windows` - Runs the automated setup script (Windows)
-
-Or run the scripts directly:
-- `bash setup-demo.sh` (Linux/Mac)
-- `setup-demo.bat` (Windows)
+```bash
+npm install git+https://github.com/rakshithkalmadi/text-tools.git
+```
 
 ## 🛠️ Usage
 
@@ -209,29 +221,43 @@ function App() {
 
 ## 🏗️ Development
 
-### 🚀 Quick Development Setup (Automated)
+### Running Locally for Development
 
-**The fastest way to start developing:**
+**The recommended way to start developing:**
 
 ```bash
 # Clone the repository
 git clone https://github.com/rakshithkalmadi/text-tools.git
 cd text-tools
 
-# Use the automated setup script
-bash setup-demo.sh    # Linux/Mac
-# OR
-setup-demo.bat        # Windows
+# Install dependencies for the component itself
+npm install
 
+# Create a quick demo environment:
+npx create-next-app@latest demo --typescript --tailwind --eslint --app --use-npm --no-git
 cd demo
+
+# Install the text-tools package locally
+npm install ../
+```
+
+Replace `demo/app/page.tsx` with:
+```tsx
+import { TextToolsPage } from 'text-conversion-tools';
+
+export default function Home() {
+  return <TextToolsPage />;
+}
+```
+
+```bash
+# Run the demo
 npm run dev
 ```
 
 Visit `http://localhost:3000` to see the text tools in action!
 
-### Manual Development Setup
-
-### Running Locally for Development
+### Manual Development Setup (Alternative)
 
 ```bash
 # Clone the repository
@@ -320,7 +346,7 @@ Visit `http://localhost:3000` to see the text tools in action!
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Set up the demo environment (see Development section above)
+3. Set up the development environment (see Development section above)
 4. Make your changes to `src/components/TextToolsPage.tsx`
 5. Test your changes using `npm run dev` in the demo folder
 6. Commit your changes (`git commit -m 'Add some amazing feature'`)

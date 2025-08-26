@@ -4,10 +4,6 @@
   "description": "A standalone React component for text conversion tools including Markdown to HTML, HTML to Markdown, and more",
   "main": "src/index.ts",
   "types": "src/index.ts",
-  "scripts": {
-    "setup-demo": "bash setup-demo.sh",
-    "setup-demo-windows": "setup-demo.bat"
-  },
   "keywords": [
     "text-conversion",
     "markdown",
