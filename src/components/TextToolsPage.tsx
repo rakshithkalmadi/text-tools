@@ -6,12 +6,10 @@ import { FiCopy, FiRefreshCw, FiSearch } from 'react-icons/fi';
 
 export interface TextToolsPageProps {
   className?: string;
-  theme?: 'dark' | 'light';
 }
 
 export const TextToolsPage: FC<TextToolsPageProps> = ({ 
-  className = '', 
-  theme = 'dark' 
+  className = ''
 }) => {
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
@@ -36,10 +34,8 @@ export const TextToolsPage: FC<TextToolsPageProps> = ({
           break;
         case 'markdown-to-text':
           const htmlFromMd = await marked(inputText);
-          // Create a temporary DOM element to parse HTML
           const tempDiv = document.createElement('div');
           tempDiv.innerHTML = htmlFromMd;
-          // Get text content and normalize whitespace
           const plainText = tempDiv.textContent || tempDiv.innerText;
           setOutputText(plainText.trim());
           break;
@@ -63,14 +59,12 @@ export const TextToolsPage: FC<TextToolsPageProps> = ({
   const handleFindReplace = () => {
     if (!findText) return;
     try {
-      // Escape special regex characters in the search string
       const escapedFindText = findText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       const regex = new RegExp(escapedFindText, 'g');
       const newText = inputText.replace(regex, replaceText);
       setInputText(newText);
     } catch (error) {
       console.error('Invalid regex pattern:', error);
-      // Optionally add error handling UI feedback here
     }
   };
 
@@ -78,20 +72,14 @@ export const TextToolsPage: FC<TextToolsPageProps> = ({
     navigator.clipboard.writeText(text);
   };
 
-  const isDark = theme === 'dark';
-  const bgClass = isDark ? 'bg-gray-900' : 'bg-gray-100';
-  const textClass = isDark ? 'text-white' : 'text-gray-900';
-  const cardBgClass = isDark ? 'bg-gray-800' : 'bg-white';
-  const borderClass = isDark ? 'border-gray-700' : 'border-gray-300';
-
   return (
-    <div className={`min-h-screen ${bgClass} py-12 px-4 sm:px-6 lg:px-8 ${className}`}>
+    <div className={`min-h-screen bg-gray-900 py-12 px-4 sm:px-6 lg:px-8 ${className}`}>
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto text-center mb-12">
-        <h1 className={`text-4xl font-bold ${textClass} mb-4`}>
+        <h1 className="text-4xl font-bold text-white mb-4">
           Text Conversion Tools
         </h1>
-        <p className={`text-xl ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+        <p className="text-xl text-gray-400">
           Transform your text with our powerful conversion tools
         </p>
       </div>
@@ -101,7 +89,7 @@ export const TextToolsPage: FC<TextToolsPageProps> = ({
         {/* Controls */}
         <div className="flex flex-wrap gap-4 mb-6">
           <select
-            className={`${cardBgClass} ${textClass} px-4 py-2 rounded-lg border ${borderClass}`}
+            className="bg-gray-800 text-white px-4 py-2 rounded-lg border border-gray-700"
             value={conversionType}
             onChange={(e) => setConversionType(e.target.value)}
           >
@@ -122,7 +110,7 @@ export const TextToolsPage: FC<TextToolsPageProps> = ({
           </button>
 
           <button
-            className={`flex items-center gap-2 ${isDark ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'} ${textClass} px-4 py-2 rounded-lg transition-colors duration-300`}
+            className="flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors duration-300"
             onClick={() => setShowFindReplace(!showFindReplace)}
           >
             <FiSearch /> Find & Replace
@@ -135,19 +123,19 @@ export const TextToolsPage: FC<TextToolsPageProps> = ({
             <input
               type="text"
               placeholder="Find"
-              className={`${cardBgClass} ${textClass} px-4 py-2 rounded-lg border ${borderClass}`}
+              className="bg-gray-800 text-white px-4 py-2 rounded-lg border border-gray-700"
               value={findText}
               onChange={(e) => setFindText(e.target.value)}
             />
             <input
               type="text"
               placeholder="Replace"
-              className={`${cardBgClass} ${textClass} px-4 py-2 rounded-lg border ${borderClass}`}
+              className="bg-gray-800 text-white px-4 py-2 rounded-lg border border-gray-700"
               value={replaceText}
               onChange={(e) => setReplaceText(e.target.value)}
             />
             <button
-              className={`${isDark ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'} ${textClass} px-4 py-2 rounded-lg transition-colors duration-300`}
+              className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors duration-300"
               onClick={handleFindReplace}
             >
               Replace All
@@ -160,16 +148,16 @@ export const TextToolsPage: FC<TextToolsPageProps> = ({
           {/* Input */}
           <div className="relative">
             <div className="flex justify-between items-center mb-2">
-              <label className={`${textClass} font-semibold`}>Input</label>
+              <label className="text-white font-semibold">Input</label>
               <button
-                className={`${isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'} transition-colors duration-300`}
+                className="text-gray-400 hover:text-white transition-colors duration-300"
                 onClick={() => copyToClipboard(inputText)}
               >
                 <FiCopy />
               </button>
             </div>
             <textarea
-              className={`w-full h-[400px] ${cardBgClass} ${textClass} p-4 rounded-lg border ${borderClass} focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all duration-300`}
+              className="w-full h-[400px] bg-gray-800 text-white p-4 rounded-lg border border-gray-700 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all duration-300"
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               placeholder="Enter your text here..."
@@ -179,16 +167,16 @@ export const TextToolsPage: FC<TextToolsPageProps> = ({
           {/* Output */}
           <div className="relative">
             <div className="flex justify-between items-center mb-2">
-              <label className={`${textClass} font-semibold`}>Output</label>
+              <label className="text-white font-semibold">Output</label>
               <button
-                className={`${isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'} transition-colors duration-300`}
+                className="text-gray-400 hover:text-white transition-colors duration-300"
                 onClick={() => copyToClipboard(outputText)}
               >
                 <FiCopy />
               </button>
             </div>
             <textarea
-              className={`w-full h-[400px] ${cardBgClass} ${textClass} p-4 rounded-lg border ${borderClass}`}
+              className="w-full h-[400px] bg-gray-800 text-white p-4 rounded-lg border border-gray-700"
               value={outputText}
               readOnly
               placeholder="Converted text will appear here..."
