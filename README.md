@@ -14,6 +14,31 @@ A powerful React component for text conversion tools including Markdown to HTML,
 
 ## 🚀 Quick Start - Running Independently
 
+### ⚡ Super Quick Setup (Recommended)
+
+**Use our automated setup scripts for the fastest setup:**
+
+```bash
+# Clone the text-tools repository
+git clone https://github.com/rakshithkalmadi/text-tools.git
+cd text-tools
+
+# Run automated setup script
+# For Linux/Mac:
+bash setup-demo.sh
+
+# For Windows:
+setup-demo.bat
+
+# That's it! Now run:
+cd demo
+npm run dev
+```
+
+Open `http://localhost:3000` and you're ready to develop! 🎉
+
+### Manual Setup Options
+
 ### Option 1: Clone and Run Directly
 ```bash
 # Clone the text-tools repository
@@ -64,16 +89,59 @@ Create a new project structure:
 mkdir text-tools-demo
 cd text-tools-demo
 npm init -y
-npm install next react react-dom typescript @types/react @types/node
+npm install next react react-dom typescript @types/react @types/node tailwindcss autoprefixer postcss
 npm install git+https://github.com/rakshithkalmadi/text-tools.git
 ```
 
-Create `pages/index.tsx`:
+Create the App Router structure:
+```bash
+mkdir -p app
+```
+
+Create `app/page.tsx`:
 ```tsx
 import { TextToolsPage } from 'text-conversion-tools';
 
 export default function Home() {
   return <TextToolsPage />;
+}
+```
+
+Create `app/layout.tsx`:
+```tsx
+import './globals.css'
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  )
+}
+```
+
+Create `app/globals.css`:
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+Create `tailwind.config.js`:
+```js
+module.exports = {
+  content: [
+    './app/**/*.{js,ts,jsx,tsx}',
+    './node_modules/text-conversion-tools/src/**/*.{js,ts,jsx,tsx}',
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
 }
 ```
 
@@ -97,6 +165,17 @@ npm run dev
 ```bash
 npm install text-conversion-tools
 ```
+
+## 🛠️ Available Scripts
+
+This repository includes helpful scripts to get you started quickly:
+
+- `npm run setup-demo` - Runs the automated setup script (Linux/Mac)
+- `npm run setup-demo-windows` - Runs the automated setup script (Windows)
+
+Or run the scripts directly:
+- `bash setup-demo.sh` (Linux/Mac)
+- `setup-demo.bat` (Windows)
 
 ## 🛠️ Usage
 
@@ -129,6 +208,28 @@ function App() {
 ```
 
 ## 🏗️ Development
+
+### 🚀 Quick Development Setup (Automated)
+
+**The fastest way to start developing:**
+
+```bash
+# Clone the repository
+git clone https://github.com/rakshithkalmadi/text-tools.git
+cd text-tools
+
+# Use the automated setup script
+bash setup-demo.sh    # Linux/Mac
+# OR
+setup-demo.bat        # Windows
+
+cd demo
+npm run dev
+```
+
+Visit `http://localhost:3000` to see the text tools in action!
+
+### Manual Development Setup
 
 ### Running Locally for Development
 
