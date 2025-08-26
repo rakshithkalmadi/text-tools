@@ -12,13 +12,93 @@ A powerful React component for text conversion tools including Markdown to HTML,
 - **Copy to Clipboard**: Easy copying of input and output text
 - **Real-time Conversion**: Instant conversion as you type
 
-## Installation
+## 🚀 Quick Start - Running Independently
+
+### Option 1: Clone and Run Directly
+```bash
+# Clone the text-tools repository
+git clone https://github.com/rakshithkalmadi/text-tools.git
+cd text-tools
+
+# Install dependencies
+npm install
+
+# Create a simple Next.js wrapper to run the component
+npx create-next-app@latest demo --typescript --tailwind --eslint --app --use-npm --no-git
+cd demo
+
+# Install the text-tools package locally
+npm install ../
+
+# Replace the default page with text tools
+```
+
+Create `demo/app/page.tsx`:
+```tsx
+import { TextToolsPage } from 'text-conversion-tools';
+
+export default function Home() {
+  return <TextToolsPage />;
+}
+```
+
+```bash
+# Run the demo
+npm run dev
+```
+
+### Option 2: Use in Your Existing Project
+
+```bash
+# If you want to use it in your existing Next.js/React project
+npm install text-conversion-tools
+
+# Or install from GitHub directly
+npm install git+https://github.com/rakshithkalmadi/text-tools.git
+```
+
+### Option 3: Quick Standalone Demo
+
+Create a new project structure:
+```bash
+mkdir text-tools-demo
+cd text-tools-demo
+npm init -y
+npm install next react react-dom typescript @types/react @types/node
+npm install git+https://github.com/rakshithkalmadi/text-tools.git
+```
+
+Create `pages/index.tsx`:
+```tsx
+import { TextToolsPage } from 'text-conversion-tools';
+
+export default function Home() {
+  return <TextToolsPage />;
+}
+```
+
+Add to `package.json`:
+```json
+{
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  }
+}
+```
+
+```bash
+npm run dev
+```
+
+## 📦 Installation for Production Use
 
 ```bash
 npm install text-conversion-tools
 ```
 
-## Usage
+## 🛠️ Usage
 
 ### As a Standalone Component
 
@@ -34,70 +114,154 @@ function App() {
 }
 ```
 
-### Custom Implementation
+### With Custom Styling
 
 ```tsx
-import { useTextConverter } from 'text-conversion-tools';
+import { TextToolsPage } from 'text-conversion-tools';
 
-function CustomTextTools() {
-  const { convert, outputText } = useTextConverter();
-  
-  const handleConvert = () => {
-    convert('markdown-to-html', inputText);
-  };
-  
+function App() {
   return (
-    // Your custom UI here
+    <TextToolsPage className="your-custom-classes" />
+  );
+}
   );
 }
 ```
 
-## Development
+## 🏗️ Development
 
-### Running Locally
+### Running Locally for Development
 
 ```bash
 # Clone the repository
 git clone https://github.com/rakshithkalmadi/text-tools.git
 cd text-tools
 
-# Install dependencies
+# Install dependencies (for the component itself)
 npm install
 
-# Start development server
+# Create a quick demo environment:
+mkdir demo && cd demo
+npm init -y
+npm install next react react-dom typescript @types/react @types/node tailwindcss autoprefixer postcss
+npm install ../
+
+# Create demo/app/page.tsx
+```
+
+Create `demo/app/page.tsx`:
+```tsx
+import { TextToolsPage } from 'text-conversion-tools';
+
+export default function Home() {
+  return <TextToolsPage />;
+}
+```
+
+Create `demo/app/layout.tsx`:
+```tsx
+import './globals.css'
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  )
+}
+```
+
+Create `demo/app/globals.css`:
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+Create `demo/tailwind.config.js`:
+```js
+module.exports = {
+  content: [
+    './app/**/*.{js,ts,jsx,tsx}',
+    '../src/**/*.{js,ts,jsx,tsx}',
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+Add to `demo/package.json` scripts:
+```json
+{
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  }
+}
+```
+
+```bash
+# Run the demo
+cd demo
 npm run dev
 ```
 
-### Building
+Visit `http://localhost:3000` to see the text tools in action!
 
-```bash
-npm run build
-```
-
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+3. Set up the demo environment (see Development section above)
+4. Make your changes to `src/components/TextToolsPage.tsx`
+5. Test your changes using `npm run dev` in the demo folder
+6. Commit your changes (`git commit -m 'Add some amazing feature'`)
+7. Push to the branch (`git push origin feature/amazing-feature`)
+8. Open a Pull Request
 
-## License
+## 📋 Requirements
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- React 18+ or 19+
+- Node.js 18+
+- Tailwind CSS (for styling)
 
-## Conversion Types Supported
+## 🎯 Conversion Types Supported
 
-- `markdown-to-html`: Converts Markdown to HTML
-- `html-to-markdown`: Converts HTML to Markdown
+- `markdown-to-html`: Converts Markdown to HTML using marked
+- `html-to-markdown`: Converts HTML to Markdown using turndown
 - `markdown-to-text`: Extracts plain text from Markdown
 - `text-to-lowercase`: Converts text to lowercase
 - `text-to-uppercase`: Converts text to uppercase
 
-## Dependencies
+## 📦 Dependencies
 
 - `marked`: For Markdown to HTML conversion
 - `turndown`: For HTML to Markdown conversion
 - `react-icons`: For UI icons
-- `react`: Peer dependency
-- `react-dom`: Peer dependency
+
+## 🔧 Peer Dependencies
+
+- `react`: ^18.0.0 || ^19.0.0
+- `react-dom`: ^18.0.0 || ^19.0.0
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🌟 Team Collaboration
+
+This component is designed to be worked on independently. Each team member can:
+
+1. **Clone and run locally** using the Quick Start guide above
+2. **Make changes** to the component in `src/components/TextToolsPage.tsx`
+3. **Test changes** using the demo setup
+4. **Submit pull requests** for review
+
+**No need to access the main HashInverse repository!** This text-tools package is completely self-contained.
