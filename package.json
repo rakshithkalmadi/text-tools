@@ -30,5 +30,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/rakshithkalmadi/text-tools.git"
+  },
+  "devDependencies": {
+    "@types/turndown": "^5.0.6"
   }
 }
